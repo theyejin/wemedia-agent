@@ -54,3 +54,6 @@ coverage/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+
+# ---- 工具产物（DSH 浏览器自动截图等，不属于项目源码）----
+browser-screenshots/
