@@ -1,0 +1,56 @@
+# ===== .gitignore =====
+# 这个文件告诉 git：哪些东西"永远不要提交"。
+# 规则：每行一个模式；以 / 开头表示只匹配仓库根目录；* 是通配符。
+# 已提交过的文件再写进这里不会自动生效，需要 git rm --cached <文件>。
+
+# ---- macOS 系统垃圾 ----
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# ---- 密钥与隐私（最重要！绝不能提交）----
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+secrets/
+credentials.json
+
+# ---- 依赖目录（体积大、可由命令重装）----
+node_modules/
+.pnpm-store/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# ---- 构建产物 ----
+dist/
+build/
+out/
+.next/
+*.tsbuildinfo
+
+# ---- 日志与临时文件 ----
+*.log
+npm-debug.log*
+logs/
+tmp/
+temp/
+.cache/
+
+# ---- 编辑器 / IDE 个人配置 ----
+.vscode/
+.idea/
+*.swp
+*~
+
+# ---- 测试与覆盖率 ----
+coverage/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
