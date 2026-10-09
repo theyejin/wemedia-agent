@@ -57,3 +57,14 @@ coverage/
 
 # ---- 工具产物（DSH 浏览器自动截图等，不属于项目源码）----
 browser-screenshots/
+
+# ---- 本地数据库：二进制文件，会随数据增长且无法合并冲突 ----
+# 结构由 db/schema.sql 描述，任何人可用 sqlite3 db/app.db < db/schema.sql 重建
+db/*.db
+db/*.db-journal
+db/*.db-wal
+db/*.db-shm
+
+# ---- DSH 工作区本地状态：整体忽略，但 skills 是项目资产，保留进版本库 ----
+.dsh/*
+!.dsh/skills/

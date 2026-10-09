@@ -1,0 +1,30 @@
+# ===== dsh-sql 连接配置片段（wemedia-agent）=====
+#
+# 用途：让 dsh-sql 插件直连本项目的 db/app.db。
+#       插件在「未配置」时会默认给一个 :memory: 内存库，写进去的数据不会落盘，
+#       而且 sql_exec 会返回「成功」——是个会骗人的假成功。必须按下面配置改掉。
+#
+# 怎么用：
+#   1. 打开 ~/.dsh/profiles/desktop/cordis.patch.yml（顶层是 YAML 数组）
+#   2. 把下面 `- id: sql` 整段追加到该数组末尾，注意缩进对齐（顶格 `- `）
+#   3. 保存后重启 DSH —— 插件配置只在启动时读取，不重启不生效
+#   4. 重启后先跑 sql_list：看到 wemedia 连接即为成功
+#
+# 注意事项：
+#   - connections 一旦给出但格式无效，插件会直接报错并停止加载，不会静默回退内存库。
+#   - sql_exec 默认带写审批门（writeApproval: true），DDL/DML 会先弹审批。
+#   - file 建议用绝对路径；路径随仓库位置变化时记得同步改这里。
+#   - 若只想临时只读排查，可把 readOnly 设为 true 直接禁用 sql_exec。
+
+- id: sql
+  name: 'dsh-sql'
+  config:
+    connections:
+      - name: wemedia
+        engine: sqlite
+        file: /Users/yejin/Documents/deepseek-harness/wemedia-agent/db/app.db
+    maxRows: 1000
+    queryTimeoutMs: 60000
+    execTimeoutMs: 120000
+    readOnly: false
+    writeApproval: true
